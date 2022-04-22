@@ -38,8 +38,7 @@ jobs:
         run: gcloud config set project $GOOGLE_PROJECT
       - name: Run terratest
         run: |
-          cd test
-          go test -v -timeout 5m
+         make test_and_cover
       - name: Release
         if: github.event_name == 'push'
         uses: cycjimmy/semantic-release-action@v2
