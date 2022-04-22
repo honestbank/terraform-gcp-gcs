@@ -9,8 +9,9 @@ variable "location" {
 }
 
 variable "force_destroy" {
-  type    = bool
-  default = false
+  type        = bool
+  description = "When deleting a bucket, this boolean option will delete all contained objects. If you try to delete a bucket that contains objects, Terraform will fail that run."
+  default     = false
 }
 
 variable "storage_class" {
