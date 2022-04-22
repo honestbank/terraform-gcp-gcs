@@ -20,11 +20,13 @@ resource "random_id" "random_id" {
 }
 
 resource "google_kms_key_ring" "google_kms_key_ring" {
+  #checkov:skip=CKV_GCP_82: Need to skip this because it wants to prevent us from destroying the KMS but
   name     = "${var.name}_${random_id.random_id.hex}"
   location = var.location
 }
 
 resource "google_kms_crypto_key" "google_kms_crypto_key" {
+  #checkov:skip=CKV_GCP_82: Need to skip this because it wants to prevent us from destroying the KMS but
   name            = "${var.name}_${random_id.random_id.hex}"
   key_ring        = google_kms_key_ring.google_kms_key_ring.id
   rotation_period = "7776000s"
@@ -48,9 +50,24 @@ resource "google_kms_crypto_key_iam_binding" "google_kms_crypto_key_iam_binding"
   members = ["serviceAccount:${data.google_storage_project_service_account.google_storage_project_service_account.email_address}"]
 }
 
-resource "google_storage_bucket" "google_storage_bucket" {
-  depends_on = [google_kms_crypto_key_iam_binding.google_kms_crypto_key_iam_binding]
+resource "google_storage_bucket" "google_storage_bucket_logging" {
+  #checkov:skip=CKV_GCP_62: logging bucket doesn't need a log
+  #checkov:skip=CKV_GCP_78:: logging bucket doesn't need a version
 
+  depends_on = [google_kms_crypto_key_iam_binding.google_kms_crypto_key_iam_binding]
+  name       = "${var.name}_logging_${random_id.random_id.hex}"
+
+  location                    = var.location
+  force_destroy               = var.force_destroy
+  storage_class               = "ARCHIVE"
+  uniform_bucket_level_access = true
+
+  encryption {
+    default_kms_key_name = google_kms_crypto_key.google_kms_crypto_key.id
+  }
+}
+
+resource "google_storage_bucket" "google_storage_bucket" {
   name          = "${var.name}_${random_id.random_id.hex}"
   location      = var.location
   force_destroy = var.force_destroy
@@ -65,7 +82,7 @@ resource "google_storage_bucket" "google_storage_bucket" {
   }
 
   logging {
-    log_bucket = "${var.name}_logging_${random_id.random_id.hex}"
+    log_bucket = google_storage_bucket.google_storage_bucket_logging.name
   }
 
   encryption {

@@ -10,7 +10,3 @@ quiet: true
 skip-path:
   - .external_modules
   - modules
-skip-check:
-  # Need to skip this because it wants to prevent us from destroying the KMS but
-  # the terratest need to be able to destroy it
-  - CKV_GCP_82
