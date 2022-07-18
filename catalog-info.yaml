@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: terraform-gcp-gcs
+  description: Terraform module for creating Google Cloud Storage in Google Cloud Platform
+  annotations:
+    github.com/project-slug: honestbank/terraform-gcp-gcs
+    github.com/team-slug: honestbank/devops-engineers
+spec:
+  type: tf-module
+  lifecycle: prod
+  system: infrastructure
+  owner: group:devops-engineers
+  dependencyOf:
+    - resource:data-warehouse
