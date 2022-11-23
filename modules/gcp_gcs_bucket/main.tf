@@ -27,6 +27,7 @@ resource "google_kms_key_ring" "google_kms_key_ring" {
 
 resource "google_kms_crypto_key" "google_kms_crypto_key" {
   #checkov:skip=CKV_GCP_82: Need to skip this because it wants to prevent us from destroying the KMS but terratest need to destroy it
+  #checkov:skip=CKV2_GCP_6:Keys are used in modules
   name            = "${var.name}_${random_id.random_id.hex}"
   key_ring        = google_kms_key_ring.google_kms_key_ring.id
   rotation_period = "7776000s" # 90 days
