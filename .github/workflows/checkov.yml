@@ -1,11 +1,14 @@
-name: "Checkov GitHub Action"
+name: "repository-checkov"
+permissions: read-all
+
 on:
   pull_request:
-    branches: [test, dev, qa, prod, main]
+    branches:
+      - main
 
 jobs:
-  checkov:
-    name: checkov
+  repository-checkov:
+    name: repository-checkov
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
