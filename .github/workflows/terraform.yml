@@ -1,4 +1,6 @@
 name: "terraform"
+permissions: read-all
+
 on:
   pull_request:
     branches:
