@@ -63,6 +63,8 @@ resource "google_storage_bucket" "google_storage_bucket_logging" {
   storage_class               = "ARCHIVE"
   uniform_bucket_level_access = true
 
+  public_access_prevention = "enforced"
+
   encryption {
     default_kms_key_name = google_kms_crypto_key.google_kms_crypto_key.id
   }
