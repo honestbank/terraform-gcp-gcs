@@ -1,4 +1,4 @@
-name: "repository-checkov"
+name: "checkov"
 permissions: read-all
 
 on:
@@ -7,8 +7,8 @@ on:
       - main
 
 jobs:
-  repository-checkov:
-    name: repository-checkov
+  checkov:
+    name: checkov
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
