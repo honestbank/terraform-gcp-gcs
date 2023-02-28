@@ -27,7 +27,7 @@ func TestGCSBucketCreation(t *testing.T) {
 	t.Run("success", func(t *testing.T) {
 		t.Parallel()
 
-		options := getOptions(t, testStructure.CopyTerraformFolderToTemp(t, "..", "examples/create_bucket"))
+		options := getOptions(t, testStructure.CopyTerraformFolderToTemp(t, "..", "examples/bucket"))
 
 		defer terraform.Destroy(t, options)
 
