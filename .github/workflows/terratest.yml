@@ -1,5 +1,7 @@
 name: terratest
-permissions: read-all
+permissions:
+  contents: write
+  pull-requests: write
 
 on:
   pull_request:
@@ -40,8 +42,7 @@ jobs:
         run: |
           make test_and_cover
       - name: Release
-        if: github.event_name == 'push'
-        uses: cycjimmy/semantic-release-action@v2
+        uses: cycjimmy/semantic-release-action@v3
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
