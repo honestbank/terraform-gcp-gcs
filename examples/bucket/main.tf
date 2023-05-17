@@ -18,8 +18,9 @@ resource "random_id" "random_id" {
 module "test_bucket" {
   source = "../../modules/gcp_gcs_bucket"
 
-  location = "asia-southeast2"
-  name     = "test-bucket"
+  location   = "asia-southeast2"
+  name       = "test-bucket"
+  project_id = "storage-0994"
 
   force_destroy = true
 }
