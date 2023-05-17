@@ -22,6 +22,7 @@ resource "random_id" "random_id" {
 resource "google_kms_key_ring" "google_kms_key_ring" {
   #checkov:skip=CKV_GCP_82: Need to skip this because it wants to prevent us from destroying the KMS but terratest need to destroy it
   name     = "${var.name}_${random_id.random_id.hex}"
+  project  = var.project_id
   location = var.location
 }
 
@@ -40,6 +41,7 @@ resource "time_sleep" "time_sleep" {
 }
 
 data "google_storage_project_service_account" "google_storage_project_service_account" {
+  project = var.project_id
 }
 
 resource "google_kms_crypto_key_iam_binding" "google_kms_crypto_key_iam_binding" {
@@ -57,6 +59,7 @@ resource "google_storage_bucket" "google_storage_bucket_logging" {
 
   depends_on = [google_kms_crypto_key_iam_binding.google_kms_crypto_key_iam_binding]
   name       = "${var.name}_logging_${random_id.random_id.hex}"
+  project    = var.project_id
 
   location                    = var.location
   force_destroy               = var.force_destroy
@@ -74,6 +77,7 @@ resource "google_storage_bucket" "google_storage_bucket" {
   name          = "${var.name}_${random_id.random_id.hex}"
   location      = var.location
   force_destroy = var.force_destroy
+  project       = var.project_id
 
   storage_class            = var.storage_class
   default_event_based_hold = var.default_event_based_hold

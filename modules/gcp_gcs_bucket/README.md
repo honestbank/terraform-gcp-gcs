@@ -15,9 +15,9 @@ This module will create bucket in GCP with enable server-side encryption and log
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | >= 4.51.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | >= 3.1.2 |
-| <a name="provider_time"></a> [time](#provider\_time) | >= 0.7.2 |
+| <a name="provider_google"></a> [google](#provider\_google) | 4.65.2 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.5.1 |
+| <a name="provider_time"></a> [time](#provider\_time) | 0.9.1 |
 
 ## Modules
 
@@ -44,6 +44,7 @@ No modules.
 | <a name="input_force_destroy"></a> [force\_destroy](#input\_force\_destroy) | When deleting a bucket, this boolean option will delete all contained objects. If you try to delete a bucket that contains objects, Terraform will fail that run. | `bool` | `false` | no |
 | <a name="input_location"></a> [location](#input\_location) | (Required) The GCS location | `string` | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | (Required) The name of the bucket. | `string` | n/a | yes |
+| <a name="input_project_id"></a> [project\_id](#input\_project\_id) | (Required) Id of the project in which the bucket is created | `string` | n/a | yes |
 | <a name="input_storage_class"></a> [storage\_class](#input\_storage\_class) | (Optional, Default: 'STANDARD') The Storage Class of the new bucket. Supported values include: STANDARD, MULTI\_REGIONAL, REGIONAL, NEARLINE, COLDLINE, ARCHIVE. | `string` | `"STANDARD"` | no |
 
 ## Outputs

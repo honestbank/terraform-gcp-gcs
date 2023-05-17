@@ -25,3 +25,8 @@ variable "default_event_based_hold" {
   description = "(Optional) Whether or not to automatically apply an eventBasedHold to new objects added to the bucket."
   default     = false
 }
+
+variable "project_id" {
+  type        = string
+  description = "(Required) Id of the project in which the bucket is created"
+}
