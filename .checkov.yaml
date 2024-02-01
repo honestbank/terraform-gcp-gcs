@@ -1,6 +1,6 @@
 compact: true
 directory:
-- gcp-gke
+- .
 download-external-modules: true
 evaluate-variables: true
 external-modules-download-path: .external_modules
@@ -10,3 +10,5 @@ quiet: true
 skip-path:
   - .external_modules
   - modules
+  - catalog-info.yml
+baseline: .checkov.baseline
