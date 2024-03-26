@@ -1,0 +1,27 @@
+# yamllint disable rule:line-length
+# Use template from https://github.com/honestbank/workflows/tree/main/examples/repository-workflows
+---
+name: "repository-checkov"
+permissions: read-all
+
+on:  # yamllint disable-line rule:truthy
+  pull_request:
+    branches:
+      - test
+      - dev
+      - qa
+      - prod
+      - main
+  push:
+    branches:
+      - test
+      - dev
+      - qa
+      - prod
+      - main
+
+jobs:
+  repository-checkov:
+    name: repository-checkov
+    uses: honestbank/workflows/.github/workflows/shared-checkov.yaml@main
+    secrets: inherit
