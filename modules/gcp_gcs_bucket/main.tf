@@ -2,15 +2,15 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = ">= 4.51.0"
+      version = "~> 5.0"
     }
     time = {
       source  = "hashicorp/time"
-      version = ">= 0.7.2"
+      version = "~> 0.11"
     }
     random = {
       source  = "hashicorp/random"
-      version = ">= 3.1.2"
+      version = "~> 3.0"
     }
   }
 }
