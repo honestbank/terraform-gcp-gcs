@@ -1,3 +1,5 @@
+name: "Checkov GitHub Action"
+permissions: read-all
 
 on:
   pull_request:
