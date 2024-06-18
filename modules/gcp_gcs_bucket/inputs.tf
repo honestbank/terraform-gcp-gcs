@@ -56,8 +56,8 @@ variable "lifecycle_rules" {
   default     = []
 }
 
-variable "soft_delete_policy" {
+variable "soft_delete_retention_duration_seconds" {
   type        = number
-  description = "(Optional, Computed) The bucket's soft delete policy, which defines the period of time that soft-deleted objects will be retained, and cannot be permanently deleted. If the block is not provided, Server side value will be kept which means removal of block won't generate any terraform change."
+  description = "The duration in seconds that soft-deleted objects in the bucket will be retained and cannot be permanently deleted. Default value is 2678400 (30 days). The value must be in between 604800(7 days) and 7776000(90 days). Note: To disable the soft delete policy on a bucket, This field must be set to 0."
   default     = 2678400
 }
