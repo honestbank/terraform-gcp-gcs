@@ -2,7 +2,7 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = ">= 4.0, < 6.0"
+      version = ">= 5.22.0, < 6.0"
     }
     time = {
       source  = "hashicorp/time"
@@ -119,5 +119,9 @@ resource "google_storage_bucket" "google_storage_bucket" {
         noncurrent_time_before     = lookup(lifecycle_rule.value.condition, "noncurrent_time_before", null)
       }
     }
+  }
+
+  soft_delete_policy {
+    retention_duration_seconds = var.soft_delete_policy
   }
 }
