@@ -6,7 +6,7 @@
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0 # Get the latest from: https://github.com/pre-commit/pre-commit-hooks/releases
+    rev: v4.6.0 # Get the latest from: https://github.com/pre-commit/pre-commit-hooks/releases
     hooks:
       - id: check-yaml
         args: ["--allow-multiple-documents"]
@@ -22,7 +22,7 @@ repos:
         stages: [commit]
         pass_filenames: false
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.88.4 # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
+    rev: v1.94.0 # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
     hooks:
       - id: terraform_fmt
       - id: terraform_validate
@@ -46,7 +46,7 @@ repos:
         stages: [commit]
         pass_filenames: false
   - repo: https://github.com/gitguardian/ggshield
-    rev: v1.26.0
+    rev: v1.31.0
     hooks:
       - id: ggshield
         language: python
@@ -64,7 +64,7 @@ repos:
   # where the end of line fixer runs first and then the docs and fmt
   # and other hooks that modify files will break it again.
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0 # Get the latest from: https://github.com/pre-commit/pre-commit-hooks/releases
+    rev: v4.6.0 # Get the latest from: https://github.com/pre-commit/pre-commit-hooks/releases
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
