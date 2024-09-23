@@ -70,8 +70,13 @@ variable "retention_lock_enabled" {
 
 variable "retention_lock_duration_seconds" {
   type        = number
-  description = "The duration in seconds that objects in the bucket must be retained and cannot be deleted or replaced. The value must be in between 604800(7 days) and 31536000(365 days)."
+  description = "The duration in seconds that objects in the bucket must be retained and cannot be deleted or replaced. The value must be in between 0 and 3155695200 (100 years)."
   default     = 86400 # 1 day
+
+  validation {
+    condition     = var.retention_lock_duration_seconds >= 0 && var.retention_lock_duration_seconds <= 3155695200
+    error_message = "The retention_lock_duration_seconds must be between 0 and 3155695200 (100 years)."
+  }
 }
 
 variable "soft_delete_retention_duration_seconds" {
