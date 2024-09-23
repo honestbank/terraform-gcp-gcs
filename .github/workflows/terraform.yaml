@@ -1,4 +1,5 @@
 name: "Terraform GitHub Action"
+permissions: read-all
 on:
   pull_request:
     # This workflow is meant for public Terraform module repositories
