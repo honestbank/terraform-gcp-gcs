@@ -87,7 +87,7 @@ resource "google_storage_bucket" "google_storage_bucket" {
   public_access_prevention = "enforced"
 
   versioning {
-    enabled = true
+    enabled = var.object_versioning_enabled
   }
 
   logging {
@@ -119,6 +119,11 @@ resource "google_storage_bucket" "google_storage_bucket" {
         noncurrent_time_before     = lookup(lifecycle_rule.value.condition, "noncurrent_time_before", null)
       }
     }
+  }
+
+  retention_policy {
+    is_locked        = var.retention_lock_enabled
+    retention_period = var.retention_lock_duration_seconds
   }
 
   soft_delete_policy {

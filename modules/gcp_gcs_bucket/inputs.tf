@@ -56,6 +56,24 @@ variable "lifecycle_rules" {
   default     = []
 }
 
+variable "object_versioning_enabled" {
+  type        = bool
+  description = "If set to true, the bucket will be versioned."
+  default     = true
+}
+
+variable "retention_lock_enabled" {
+  type        = bool
+  description = "If set to true, the bucket will be locked and objects in the bucket will be protected from deletion. Note that retention_policy cannot be used with object versioning. They are mutually exclusive."
+  default     = false
+}
+
+variable "retention_lock_duration_seconds" {
+  type        = number
+  description = "The duration in seconds that objects in the bucket must be retained and cannot be deleted or replaced. The value must be in between 604800(7 days) and 31536000(365 days)."
+  default     = 86400 # 1 day
+}
+
 variable "soft_delete_retention_duration_seconds" {
   type        = number
   description = "The duration in seconds that soft-deleted objects in the bucket will be retained and cannot be permanently deleted. Default value is 2678400 (30 days). The value must be in between 604800(7 days) and 7776000(90 days). Note: To disable the soft delete policy on a bucket, This field must be set to 0."
