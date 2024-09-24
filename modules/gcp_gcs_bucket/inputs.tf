@@ -62,6 +62,12 @@ variable "object_versioning_enabled" {
   default     = true
 }
 
+variable "retention_lock_bucket_enabled" {
+  type        = bool
+  description = "Bucket will be locked and cannot be deleted from retention policy"
+  default     = false
+}
+
 variable "retention_lock_enabled" {
   type        = bool
   description = "If set to true, the bucket will be locked and objects in the bucket will be protected from deletion. Note that retention_policy cannot be used with object versioning. They are mutually exclusive."

@@ -74,6 +74,7 @@ resource "google_storage_bucket" "google_storage_bucket_logging" {
 }
 
 resource "google_storage_bucket" "google_storage_bucket" {
+  #checkov:skip=CKV_GCP_78: Bucket versioning should be enabled by default however skipping the Checkov rule as it is not a requirement for all buckets with retention policy enabled.
   name          = "${var.name}_${random_id.random_id.hex}"
   location      = var.location
   force_destroy = var.force_destroy
@@ -121,9 +122,12 @@ resource "google_storage_bucket" "google_storage_bucket" {
     }
   }
 
-  retention_policy {
-    is_locked        = var.retention_lock_enabled
-    retention_period = var.retention_lock_duration_seconds
+  dynamic "retention_policy" {
+    for_each = var.retention_lock_enabled ? [1] : []
+    content {
+      is_locked        = var.retention_lock_bucket_enabled
+      retention_period = var.retention_lock_duration_seconds
+    }
   }
 
   soft_delete_policy {
