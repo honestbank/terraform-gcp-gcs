@@ -40,6 +40,12 @@ func TestGCSBucketCreation(t *testing.T) {
 		name := terraform.Output(t, options, "test_bucket_name")
 		assert.NotEmpty(t, name)
 
+		id_retention := terraform.Output(t, options, "test_bucket_with_retention_id")
+		assert.NotEmpty(t, id_retention)
+
+		name_retention := terraform.Output(t, options, "test_bucket_with_retention_name")
+		assert.NotEmpty(t, name_retention)
+
 		ctx := context.Background()
 		client, err := storage.NewClient(ctx, option.WithCredentialsJSON([]byte(credentials)))
 		if err != nil {
