@@ -54,6 +54,7 @@ resource "google_kms_crypto_key_iam_binding" "google_kms_crypto_key_iam_binding"
 }
 
 resource "google_storage_bucket" "google_storage_bucket" {
+  #checkov:skip=CKV_GCP_62: "Bucket should log access, however we never use the access log"
   #checkov:skip=CKV_GCP_78: Bucket versioning should be enabled by default however skipping the Checkov rule as it is not a requirement for all buckets with retention policy enabled.
   name          = "${var.name}_${random_id.random_id.hex}"
   location      = var.location
