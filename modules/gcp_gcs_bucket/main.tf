@@ -45,34 +45,14 @@ data "google_storage_project_service_account" "google_storage_project_service_ac
 }
 
 resource "google_kms_crypto_key_iam_binding" "google_kms_crypto_key_iam_binding" {
-  depends_on = [time_sleep.time_sleep]
-
   crypto_key_id = google_kms_crypto_key.google_kms_crypto_key.id
   role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
   members       = ["serviceAccount:${data.google_storage_project_service_account.google_storage_project_service_account.email_address}"]
 }
 
-resource "google_storage_bucket" "google_storage_bucket_logging" {
-  #checkov:skip=CKV_GCP_62: logging bucket doesn't need a log
-  #checkov:skip=CKV_GCP_78:: logging bucket doesn't need a version
-
-  depends_on = [google_kms_crypto_key_iam_binding.google_kms_crypto_key_iam_binding]
-  name       = "${var.name}_logging_${random_id.random_id.hex}"
-  project    = var.project_id
-
-  location                    = var.location
-  force_destroy               = var.force_destroy
-  storage_class               = "ARCHIVE"
-  uniform_bucket_level_access = true
-
-  public_access_prevention = "enforced"
-
-  encryption {
-    default_kms_key_name = google_kms_crypto_key.google_kms_crypto_key.id
-  }
-}
-
 resource "google_storage_bucket" "google_storage_bucket" {
+  depends_on = [google_kms_crypto_key_iam_binding.google_kms_crypto_key_iam_binding]
+
   #checkov:skip=CKV_GCP_78: Bucket versioning should be enabled by default however skipping the Checkov rule as it is not a requirement for all buckets with retention policy enabled.
   name          = "${var.name}_${random_id.random_id.hex}"
   location      = var.location
@@ -88,10 +68,6 @@ resource "google_storage_bucket" "google_storage_bucket" {
 
   versioning {
     enabled = var.object_versioning_enabled
-  }
-
-  logging {
-    log_bucket = google_storage_bucket.google_storage_bucket_logging.name
   }
 
   encryption {
