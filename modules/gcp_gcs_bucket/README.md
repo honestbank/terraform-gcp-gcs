@@ -17,7 +17,6 @@ This module will create bucket in GCP with enable server-side encryption and log
 |------|---------|
 | <a name="provider_google"></a> [google](#provider\_google) | ~> 5.22 |
 | <a name="provider_random"></a> [random](#provider\_random) | >= 3.0, < 4.0 |
-| <a name="provider_time"></a> [time](#provider\_time) | >= 0.11, < 1.0 |
 
 ## Modules
 
@@ -31,9 +30,7 @@ No modules.
 | [google_kms_crypto_key_iam_binding.google_kms_crypto_key_iam_binding](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/kms_crypto_key_iam_binding) | resource |
 | [google_kms_key_ring.google_kms_key_ring](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/kms_key_ring) | resource |
 | [google_storage_bucket.google_storage_bucket](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket) | resource |
-| [google_storage_bucket.google_storage_bucket_logging](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket) | resource |
 | [random_id.random_id](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id) | resource |
-| [time_sleep.time_sleep](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) | resource |
 | [google_storage_project_service_account.google_storage_project_service_account](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/storage_project_service_account) | data source |
 
 ## Inputs
