@@ -34,19 +34,11 @@ resource "google_kms_crypto_key" "google_kms_crypto_key" {
   rotation_period = "7776000s" # 90 days
 }
 
-resource "time_sleep" "time_sleep" {
-  depends_on = [google_kms_crypto_key.google_kms_crypto_key]
-
-  create_duration = "30s"
-}
-
 data "google_storage_project_service_account" "google_storage_project_service_account" {
   project = var.project_id
 }
 
 resource "google_kms_crypto_key_iam_binding" "google_kms_crypto_key_iam_binding" {
-  depends_on = [time_sleep.time_sleep]
-
   crypto_key_id = google_kms_crypto_key.google_kms_crypto_key.id
   role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
 
@@ -54,6 +46,9 @@ resource "google_kms_crypto_key_iam_binding" "google_kms_crypto_key_iam_binding"
 }
 
 resource "google_storage_bucket" "google_storage_bucket" {
+  # Ensures the storage service account has permission to use the KMS key for encryption/decryption before creating the storage bucket.
+  depends_on = [google_kms_crypto_key_iam_binding.google_kms_crypto_key_iam_binding]
+
   #checkov:skip=CKV_GCP_62: "Bucket should log access, however we never use the access log"
   #checkov:skip=CKV_GCP_78: Bucket versioning should be enabled by default however skipping the Checkov rule as it is not a requirement for all buckets with retention policy enabled.
   name          = "${var.name}_${random_id.random_id.hex}"
