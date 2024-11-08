@@ -49,8 +49,7 @@ resource "google_kms_crypto_key_iam_binding" "google_kms_crypto_key_iam_binding"
 
   crypto_key_id = google_kms_crypto_key.google_kms_crypto_key.id
   role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
-
-  members = ["serviceAccount:${data.google_storage_project_service_account.google_storage_project_service_account.email_address}"]
+  members       = ["serviceAccount:${data.google_storage_project_service_account.google_storage_project_service_account.email_address}"]
 }
 
 resource "google_storage_bucket" "google_storage_bucket_logging" {
