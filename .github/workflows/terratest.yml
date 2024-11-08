@@ -32,7 +32,7 @@ jobs:
           go-version: 1.22
         id: go
       - name: Login to Google Cloud
-        uses: google-github-actions/auth@v0
+        uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ env.TERRATEST_GOOGLE_CREDENTIALS }}
 

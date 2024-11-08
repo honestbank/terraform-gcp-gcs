@@ -31,9 +31,12 @@ func TestGCSBucketCreation(t *testing.T) {
 
 		defer terraform.Destroy(t, options)
 
+		fmt.Println("<------------InitAndApply started ------------->")
 		_, err := terraform.InitAndApplyE(t, options)
+		fmt.Println("Init and apply err ===>", err)
 		assert.NoError(t, err)
 
+		fmt.Println("All output====>", terraform.OutputAll(t, options))
 		id := terraform.Output(t, options, "test_bucket_id")
 		assert.NotEmpty(t, id)
 
