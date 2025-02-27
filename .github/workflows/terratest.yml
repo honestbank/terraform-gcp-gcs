@@ -31,6 +31,10 @@ jobs:
         with:
           go-version: 1.22
         id: go
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.0"
       - name: Login to Google Cloud
         uses: google-github-actions/auth@v0
         with:
