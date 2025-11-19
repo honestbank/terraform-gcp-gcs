@@ -90,3 +90,9 @@ variable "soft_delete_retention_duration_seconds" {
   description = "The duration in seconds that soft-deleted objects in the bucket will be retained and cannot be permanently deleted. Default value is 2678400 (30 days). The value must be in between 604800(7 days) and 7776000(90 days). Note: To disable the soft delete policy on a bucket, This field must be set to 0."
   default     = 2678400
 }
+
+variable "hierarchical_namespace" {
+  type        = bool
+  description = "(Required) Enables hierarchical namespace for the bucket."
+  default     = false
+}
