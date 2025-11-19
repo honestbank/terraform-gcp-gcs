@@ -71,6 +71,10 @@ resource "google_storage_bucket" "google_storage_bucket" {
     default_kms_key_name = google_kms_crypto_key.google_kms_crypto_key.id
   }
 
+  hierarchical_namespace {
+    enabled = var.hierarchical_namespace
+  }
+
   dynamic "lifecycle_rule" {
     for_each = var.lifecycle_rules
     content {
