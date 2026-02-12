@@ -1,9 +1,9 @@
 module github.com/honestbank/terraform-gcp-gcs
 
-go 1.18
+go 1.26
 
 require (
-	cloud.google.com/go/bigquery v1.31.0
+	cloud.google.com/go/storage v1.22.0
 	github.com/gruntwork-io/terratest v0.40.7
 	github.com/stretchr/testify v1.7.1
 	google.golang.org/api v0.75.0
@@ -13,7 +13,6 @@ require (
 	cloud.google.com/go v0.100.2 // indirect
 	cloud.google.com/go/compute v1.6.0 // indirect
 	cloud.google.com/go/iam v0.3.0 // indirect
-	cloud.google.com/go/storage v1.22.0 // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
 	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
 	github.com/aws/aws-sdk-go v1.40.56 // indirect
