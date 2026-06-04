@@ -4,7 +4,7 @@
 # Use this workflow for public repos, since public repos cannot access our internal
 # workflows repo.
 ---
-name: repository-semantic-pr
+name: public-semantic-pr
 permissions:
   contents: write
   pull-requests: write
@@ -18,11 +18,11 @@ on:
       - synchronize
 
 jobs:
-  repository-semantic-pr:
-    name: repository-semantic-pr
+  public-semantic-pr:
+    name: public-semantic-pr
     runs-on: ubuntu-latest
     steps:
-      - uses: amannn/action-semantic-pull-request@v4
+      - uses: amannn/action-semantic-pull-request@48f256284bd46cdaab1048c3721360e808335d50 # v6.1.1
         name: Semantic Pull Request
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
