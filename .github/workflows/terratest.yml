@@ -32,11 +32,11 @@ jobs:
           go-version: 1.26
         id: go
       - name: Install Terraform
-        uses: hashicorp/setup-terraform@v3
+        uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3.1.2
         with:
           terraform_version: "1.9.0"
       - name: Login to Google Cloud
-        uses: google-github-actions/auth@v0
+        uses: google-github-actions/auth@09cecabe1f169596b81c2ef22b40faff87acc460 # v0
         with:
           credentials_json: ${{ env.TERRATEST_GOOGLE_CREDENTIALS }}
 
@@ -46,7 +46,7 @@ jobs:
         run: |
           make tests
       - name: Release
-        uses: cycjimmy/semantic-release-action@v3
+        uses: cycjimmy/semantic-release-action@8e58d20d0f6c8773181f43eb74d6a05e3099571d # v3.4.2
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
