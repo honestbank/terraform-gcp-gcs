@@ -31,7 +31,8 @@ repos:
           - --tf-init-args=-upgrade
       - id: terraform_trivy
         args:
-          - --args=--config=trivy.yaml
+          - --args=--config=__GIT_WORKING_DIR__/trivy.yaml
+          - --args=--ignorefile=__GIT_WORKING_DIR__/.trivyignore
       - id: terraform_checkov
         exclude: "test/"
         args:
